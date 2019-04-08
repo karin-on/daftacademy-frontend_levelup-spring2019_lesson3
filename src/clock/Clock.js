@@ -47,15 +47,15 @@ export class Clock {
     }
 
     changeMinutes() {
-        if (!this.seconds) {
-            this.minutes = this.minutesCounter.next().value;
-        }
+        !this.seconds
+            ? this.minutes = this.minutesCounter.next().value
+            : null;
     }
 
     changeHours() {
-        if (!this.seconds && !this.minutes) {
-            this.hours = this.hoursCounter.next().value;
-        }
+        !this.seconds && !this.minutes
+            ? this.hours = this.hoursCounter.next().value
+            : null;
     }
 
     startSeconds() {
