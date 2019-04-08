@@ -44,8 +44,8 @@ module.exports = function (env) {
         plugins: [
             new HtmlWebpackPlugin({
                 filename: 'index.html',
-                template: './index.html',
-                favicon: './src/img/clock.ico'
+                template: './index.html'
+                // favicon: './src/img/clock.ico'
             }),
             new MiniCssExtractPlugin({
                 filename: 'style.css'
