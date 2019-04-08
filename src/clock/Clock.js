@@ -6,14 +6,14 @@ export class Clock {
         this.startTime = new Time();
     }
 
-    * generator(start, stop) {
+    * generator(start, interval) {
         for (let i = start; true ; i++) {
-            yield this.transform(i, stop);
+            yield this.transform(i, interval);
         }
     };
 
-    transform(val, stop) {
-        return val % stop;
+    transform(val, interval) {
+        return val % interval;
     };
 
     setStartTime() {
