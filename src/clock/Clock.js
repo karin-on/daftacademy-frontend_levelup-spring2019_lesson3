@@ -4,8 +4,10 @@ import { Time } from "./Time";
 export class Clock {
     constructor() {
         this.startTime = new Time();
-        this.generator = function * (start) {
-            for (let i = start; true ; i++) {
+        this.stopHours = 12;
+        this.stopMinAndSec = 59;
+        this.generator = function * (start, stop = this.stopMinAndSec) {
+            for (let i = start; i <= stop ; i++) {
                 yield i;
             }
         };
@@ -16,7 +18,7 @@ export class Clock {
     }
 
     startGenerators() {
-        this.hoursCounter = this.generator(this.startTime.hours);
+        this.hoursCounter = this.generator(this.startTime.hours, this.stopHours);
         this.minutesCounter = this.generator(this.startTime.minutes);
         this.secondsCounter = this.generator(this.startTime.seconds);
 
@@ -43,7 +45,7 @@ export class Clock {
 
     changeMinutes() {
         if (this.seconds === 0) {
-            if (this.minutes < 59) {
+            if (this.minutes < this.stopMinAndSec) {
                 this.minutes = this.minutesCounter.next().value;
             } else {
                 this.minutesCounter = this.generator(0);
@@ -54,7 +56,7 @@ export class Clock {
 
     changeHours() {
         if (this.seconds === 0 && this.minutes === 0) {
-            if (this.hours < 12) {
+            if (this.hours < this.stopHours) {
                 this.hours = this.hoursCounter.next().value;
             } else {
                 this.hoursCounter = this.generator(0);
@@ -67,7 +69,7 @@ export class Clock {
         setInterval(() => {
             this.seconds = this.secondsCounter.next().value;
 
-            if (this.seconds === 59) {
+            if (this.seconds === this.stopMinAndSec) {
                 this.secondsCounter = this.generator(0);
             }
 

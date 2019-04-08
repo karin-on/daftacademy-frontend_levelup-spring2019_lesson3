@@ -9,7 +9,7 @@ export class Time {
             this.date.getHours();
 
         //fake hour
-        // const fakeHour = 0;
+        // const fakeHour = 24;
         // this.hours = fakeHour > 12 ? fakeHour - 12 : fakeHour;
 
         this.minutes = this.date.getMinutes();
