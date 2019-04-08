@@ -33,9 +33,9 @@ export class Clock {
     }
 
     printTime() {
-        const clockHours = document.querySelector('.clock__hours');
-        const clockMinutes = document.querySelector('.clock__minutes');
-        const clockSeconds = document.querySelector('.clock__seconds');
+        const clockHours = document.querySelector('#clock__hours');
+        const clockMinutes = document.querySelector('#clock__minutes');
+        const clockSeconds = document.querySelector('#clock__seconds');
 
         clockHours.innerText = this.printTwoDigits(this.hours);
         clockMinutes.innerText = this.printTwoDigits(this.minutes);

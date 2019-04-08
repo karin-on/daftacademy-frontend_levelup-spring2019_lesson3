@@ -2,11 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-//do generatorów es6:
-//@babel/plugin-transform-regenerator -D
-//@babel/plugin-transform-runtime -D
-//@babel/runtime
-
 
 module.exports = function (env) {
     const isDev = (env && env.dev) ? true : false;
@@ -50,6 +45,7 @@ module.exports = function (env) {
             new HtmlWebpackPlugin({
                 filename: 'index.html',
                 template: './index.html',
+                favicon: './src/img/clock.ico'
             }),
             new MiniCssExtractPlugin({
                 filename: 'style.css'

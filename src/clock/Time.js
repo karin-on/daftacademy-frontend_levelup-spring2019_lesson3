@@ -18,5 +18,3 @@ export class Time {
         this.seconds = this.date.getSeconds();
     }
 }
-
-

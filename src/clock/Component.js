@@ -9,11 +9,17 @@ export class ClockComponent {
 
         this.wrapper.innerHTML = `        
         <div class="clock">
-            <span class="clock__hours"><span class="clock__placeholder">__</span></span>
+            <span class="clock__numbers" id="clock__hours">
+                <span class="clock__placeholder">__</span>
+            </span>
             <span class="clock__colon">:</span>
-            <span class="clock__minutes"><span class="clock__placeholder">__</span></span>
+            <span class="clock__numbers" id="clock__minutes">
+                <span class="clock__placeholder">__</span>
+            </span>
             <span class="clock__colon">:</span>
-            <span class="clock__seconds"><span class="clock__placeholder">__</span></span>
+            <span class="clock__numbers" id="clock__seconds">
+                <span class="clock__placeholder">__</span>
+            </span>
         </div>
     `;
 
