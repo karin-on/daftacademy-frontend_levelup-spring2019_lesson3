@@ -4,21 +4,26 @@ import { Time } from "./Time";
 export class Clock {
     constructor() {
         this.startTime = new Time();
-        this.generator = function * (start) {
-            for (let i = start; true ; i++) {
-                yield i;
-            }
-        };
     }
+
+    * generator(start, stop) {
+        for (let i = start; true ; i++) {
+            yield this.transform(i, stop);
+        }
+    };
+
+    transform(val, stop) {
+        return val % stop;
+    };
 
     setStartTime() {
         this.startTime.getTime();
     }
 
     startGenerators() {
-        this.hoursCounter = this.generator(this.startTime.hours);
-        this.minutesCounter = this.generator(this.startTime.minutes);
-        this.secondsCounter = this.generator(this.startTime.seconds);
+        this.hoursCounter = this.generator(this.startTime.hours, 13);
+        this.minutesCounter = this.generator(this.startTime.minutes, 60);
+        this.secondsCounter = this.generator(this.startTime.seconds, 60);
 
         this.hours = this.hoursCounter.next().value;
         this.minutes = this.minutesCounter.next().value;
@@ -42,37 +47,20 @@ export class Clock {
     }
 
     changeMinutes() {
-        if (this.seconds === 0) {
-            if (this.minutes < 59) {
-                this.minutes = this.minutesCounter.next().value;
-            } else {
-                this.minutesCounter = this.generator(0);
-                this.minutes = this.minutesCounter.next().value;
-            }
+        if (!this.seconds) {
+            this.minutes = this.minutesCounter.next().value;
         }
     }
 
     changeHours() {
-        if (this.seconds === 0 && this.minutes === 0) {
-            if (this.hours < 12) {
-                this.hours = this.hoursCounter.next().value;
-            } else {
-                this.hoursCounter = this.generator(0);
-                this.hours = this.hoursCounter.next().value;
-            }
+        if (!this.seconds && !this.minutes) {
+            this.hours = this.hoursCounter.next().value;
         }
     }
 
     startSeconds() {
         setInterval(() => {
             this.seconds = this.secondsCounter.next().value;
-
-            if (this.seconds === 59) {
-                this.secondsCounter = this.generator(0);
-            }
-
-            // console.log((new Date()).getSeconds());
-
             this.changeMinutes();
             this.changeHours();
             this.printTime();
