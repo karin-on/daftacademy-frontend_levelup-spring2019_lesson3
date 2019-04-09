@@ -8,5 +8,3 @@ const clock = new Clock();
 clock.setStartTime();
 clock.startGenerators();
 clock.startSeconds();
-
-
