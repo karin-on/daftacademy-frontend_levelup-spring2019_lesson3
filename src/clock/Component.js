@@ -1,13 +1,10 @@
-export class ClockComponent {
-    constructor() {
-        this.wrapper = document.createElement('div');
-    }
+export default () => {
+    const { body } = document;
 
-    render() {
-        const { body } = document;
-        this.wrapper.classList.add('wrapper');
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('wrapper');
 
-        this.wrapper.innerHTML = `        
+    wrapper.innerHTML = `        
         <div class="clock">
             <span class="clock__numbers" id="clock__hours">
                 <span class="clock__placeholder">__</span>
@@ -23,6 +20,5 @@ export class ClockComponent {
         </div>
     `;
 
-        body.appendChild(this.wrapper);
-    }
+    body.appendChild(wrapper);
 }

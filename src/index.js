@@ -1,11 +1,9 @@
 import './style.css';
-import { ClockComponent } from './clock/Component';
+import renderComponent from './clock/Component';
 import { Clock } from "./clock/Clock";
 
 
-const clockComponent = new ClockComponent();
-clockComponent.render();
-
+renderComponent();
 const clock = new Clock();
 clock.setStartTime();
 clock.startGenerators();
